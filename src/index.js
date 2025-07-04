@@ -66,7 +66,7 @@ app.use(session({
         collectionName: 'sessions'
     }),
     cookie: {
-        secure: false,
+        secure: true,
         sameSite: "none"
     }
 }))
