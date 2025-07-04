@@ -57,6 +57,9 @@ const allowedOrigins = [
 
 app.use(express.json())
 
+app.set("trust proxy", 1); // ✅ VERY important for deployed HTTPS apps
+
+
 app.use(session({
     secret: "secret",
     resave: false,
