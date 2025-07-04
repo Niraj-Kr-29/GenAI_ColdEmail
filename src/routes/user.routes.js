@@ -5,6 +5,6 @@ import { isAuthenticated } from "../middlewares/authmiddleware.js";
 const router = Router()
 
 router.route('/update_profile').patch(isAuthenticated, updateUserProfile)
-router.route('/getUserDetails').get(isAuthenticated, getUserDetails)
+router.route('/getUserDetails').get(getUserDetails)
 
 export default router

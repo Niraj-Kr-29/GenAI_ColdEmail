@@ -29,6 +29,7 @@ const updateUserProfile = async(req,res)=>{
 }
 
 const getUserDetails = async(req,res) => {
+    console.log("Method called", req.user.name)
     console.log(req.cookies)
     console.log(req.session)
     try{
