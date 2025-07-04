@@ -17,7 +17,7 @@ dotenv.config({
 })
 
 const app = express()
-const Port = process.env.Port;
+const PORT = process.env.PORT;
 
 ( async () => {
     try {
@@ -28,7 +28,7 @@ const Port = process.env.Port;
        })
        
        app.listen(process.env.PORT, () => {
-            console.log(`App is listening on port ${Port}`)
+            console.log(`App is listening on port ${PORT}`)
        })
 
     } catch (error) {
@@ -40,7 +40,8 @@ const Port = process.env.Port;
 const allowedOrigins = [
     "http://localhost:3000",  
     "http://localhost:5173",   
-    "http://localhost:5174",   
+    "http://localhost:5174",
+    "https://gen-ai-cold-email-frontend.vercel.app"   
   ];
   
   app.use(cors({

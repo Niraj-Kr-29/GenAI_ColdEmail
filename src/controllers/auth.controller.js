@@ -5,10 +5,10 @@ const googleAuthCallback =  async(req, res) => {
     try {
         const user = req.user
         if(user.college != undefined){
-           res.redirect("http://localhost:5173/primary")
+           res.redirect("https://gen-ai-cold-email-frontend.vercel.app/primary")
         }
         else{
-            res.redirect("http://localhost:5173/profileCompletePage")
+            res.redirect("https://gen-ai-cold-email-frontend.vercel.app/profileCompletePage")
         }
     } catch (error) {
         res.status(500).json({ message: "Something went wrong!", error });
