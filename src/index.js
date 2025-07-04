@@ -67,8 +67,7 @@ app.use(session({
     }),
     cookie: {
         secure: false,
-        sameSite: "lax"
-
+        sameSite: "none"
     }
 }))
 
