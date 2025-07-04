@@ -41,19 +41,24 @@ const allowedOrigins = [
     "http://localhost:3000",  
     "http://localhost:5173",   
     "http://localhost:5174",
-    "https://gen-ai-cold-email-frontend.vercel.app"   
+    "https://gen-ai-cold-email-frontend.vercel.app/*"   
   ];
   
-  app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true
-  }));
+//   app.use(cors({
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       } else {
+//         return callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true
+//   }));
+
+app.use(cors({
+  origin: "https://gen-ai-cold-email-frontend.vercel.app",
+  credentials: true
+}));
 
 app.use(express.json())
 
