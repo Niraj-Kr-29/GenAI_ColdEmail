@@ -17,6 +17,7 @@ dotenv.config({
 })
 
 const app = express()
+app.set("trust proxy", 1);
 const PORT = process.env.PORT;
 
 ( async () => {
@@ -41,7 +42,7 @@ const allowedOrigins = [
     "http://localhost:3000",  
     "http://localhost:5173",   
     "http://localhost:5174",
-    "https://gen-ai-cold-email-frontend.vercel.app/"   
+    "https://gen-ai-cold-email-frontend.vercel.app"   
   ];
   
   app.use(cors({
