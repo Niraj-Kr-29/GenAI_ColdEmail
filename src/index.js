@@ -41,7 +41,7 @@ const allowedOrigins = [
     "http://localhost:3000",  
     "http://localhost:5173",   
     "http://localhost:5174",
-    "https://gen-ai-cold-email-frontend.vercel.app/*"   
+    "https://gen-ai-cold-email-frontend.vercel.app/"   
   ];
   
   app.use(cors({
@@ -96,11 +96,11 @@ app.use('/auth', authRouter)
 app.use('/email', emailRouter)
 app.use('/user', userRouter)
 
-app.get("/set-cookie", (req, res) => {
-    res.cookie("connect.sid", "s%3AJG4hQPirb8h7zIJCmLAKovLjNmv6Har-.xuEz9u1nF7URWU%2BTeRhXu6KU%2FUwBJzZ6KjzQtOwf93M", {
-        httpOnly: true,
-        secure: false,
-        sameSite: "none"
-    });
-    res.send("Cookie Set!");
-});
+// app.get("/set-cookie", (req, res) => {
+//     res.cookie("connect.sid", "s%3AJG4hQPirb8h7zIJCmLAKovLjNmv6Har-.xuEz9u1nF7URWU%2BTeRhXu6KU%2FUwBJzZ6KjzQtOwf93M", {
+//         httpOnly: true,
+//         secure: false,
+//         sameSite: "none"
+//     });
+//     res.send("Cookie Set!");
+// });
