@@ -1,17 +1,3 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors'
-import './config/passport.js'
-import passport from 'passport'
-import session from 'express-session'
-import mongoose from 'mongoose'
-import { User } from './models/user.model.js'
-import MongoStore from 'connect-mongo'
-
-import authRouter from './routes/auth.routes.js'
-import emailRouter from './routes/email.routes.js'
-import userRouter from './routes/user.routes.js'
-
 dotenv.config({
     path: './.env'
 })
@@ -38,21 +24,15 @@ const PORT = process.env.PORT;
     }
 })()
 
-const allowedOrigins = [
-    "http://localhost:3000",  
-    "http://localhost:5173",   
-    "http://localhost:5174",
-    "https://gen-ai-cold-email-frontend.vercel.app"   
-  ];
+// const allowedOrigins = [
+//     "http://localhost:3000",  
+//     "http://localhost:5173",   
+//     "http://localhost:5174",
+//     "https://gen-ai-cold-email-frontend.vercel.app"   
+//   ];
   
   app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin:['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'https://gen-ai-cold-email-frontend.vercel.app'],
     credentials: true
   }));
 
@@ -60,17 +40,35 @@ const allowedOrigins = [
 app.use(express.json())
 
 
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+import './config/passport.js'
+import passport from 'passport'
+import session from 'express-session'
+import mongoose from 'mongoose'
+import { User } from './models/user.model.js'
+import MongoStore from 'connect-mongo'
+
+import authRouter from './routes/auth.routes.js'
+import emailRouter from './routes/email.routes.js'
+import userRouter from './routes/user.routes.js'
+
 app.use(session({
     secret: "secret",
     resave: false,
+    proxy: true,
     saveUninitialized: false,
+    expiration: 1000 * 60 * 60 * 24,
     store: MongoStore.create({
         mongoUrl: `${process.env.MONGODB_URI}/${process.env.DB_NAME}`,
         collectionName: 'sessions'
     }),
     cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
         secure: true,
-        sameSite: "none"
+        sameSite: 'none'
     }
 }))
 
