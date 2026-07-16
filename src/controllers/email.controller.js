@@ -18,7 +18,7 @@ const generateEmail = async (req, res) => {
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
     const prompt = `
             You are an expert email copywriter.
 
